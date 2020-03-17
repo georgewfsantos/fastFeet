@@ -1,0 +1,19 @@
+<strong>Olá, {{ deliverer }}</strong>
+<p>You have just been assigned a new order. Check the details below for delivery:</p>
+<p>
+
+  <strong>Order Details:</strong> <br />
+  <ul style="list-style: none">
+    <li><strong>Addressee:</strong>{{ name }}</li>
+    <li><strong>Product:</strong>{{ product }}</li>
+    <li><strong>Address:</strong></li><br />
+    <li>{{ street }}</li>
+    <li>{{ number }}</li>
+    <li>{{ complement }}</li>
+    <li>{{ city }}</li>
+    <li>{{ state }}</li>
+    <li>{{ zip_code }}</li>
+  </ul>
+  <br />
+  <small>Please, Make sure the order is picked up and delivered as soon as possible.</small>
+</p>

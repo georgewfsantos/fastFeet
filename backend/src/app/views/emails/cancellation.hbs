@@ -1,0 +1,19 @@
+<strong>Olá, {{ deliverer }}</strong>
+<p>One of your deliveries was just canceled:</p>
+<p>
+
+  <strong>Order Details:</strong> <br />
+  <ul style="list-style: none">
+    <li><strong>Addressee:</strong>{{ name }}</li>
+    <li><strong>Product:</strong>{{ product }}</li>
+    <li><strong>Address:</strong></li><br />
+    <li>{{ street }}</li>
+    <li>{{ number }}</li>
+    <li>{{ complement }}</li>
+    <li>{{ city }}</li>
+    <li>{{ state }}</li>
+    <li>{{ zip_code }}</li>
+  </ul>
+  <br />
+  <small>Sorry for the incovenience.</small>
+</p>
