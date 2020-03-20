@@ -17,15 +17,11 @@ export const Content = styled.div`
     align-items: center;
     img {
       height: 24px;
-    }
-    span {
       margin-right: 20px;
-      font-size: 15px;
-      font-weight: bold;
-      color: #ee4d64;
       padding-right: 20px;
       border-right: 1px solid #eee;
     }
+
     a {
       font-weight: bold;
       margin-right: 15px;

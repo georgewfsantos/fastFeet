@@ -21,25 +21,24 @@ export default function Header() {
       <Content>
         <nav>
           <img src={logo} alt="gympoint" />
-          <span>GYMPOINT</span>
-          <NavLink to="/students" activeStyle={{ color: '#444444' }}>
-            ALUNOS
+          <NavLink to="/orders" activeStyle={{ color: '#444444' }}>
+            ENCOMENDAS
           </NavLink>
-          <NavLink to="/plans" activeStyle={{ color: '#444444' }}>
-            PLANOS
+          <NavLink to="/deliverers" activeStyle={{ color: '#444444' }}>
+            ENTREGADORES
           </NavLink>
-          <NavLink to="/enrollments" activeStyle={{ color: '#444444' }}>
-            MATRÍCULAS
+          <NavLink to="/addressees" activeStyle={{ color: '#444444' }}>
+            DESTINATÁRIOS
           </NavLink>
-          <NavLink to="/help-orders" activeStyle={{ color: '#444444' }}>
-            PEDIDOS DE AUXÍLIO
+          <NavLink to="/orderIssues" activeStyle={{ color: '#444444' }}>
+            PROBLEMAS
           </NavLink>
         </nav>
 
         <aside>
           <Profile>
             <div>
-              <strong>{profile.name}</strong>
+              <strong>{profile && profile.name}</strong>
               <button type="button" id="logout" onClick={handleSignOut}>
                 Sair do sistema
               </button>

@@ -10,27 +10,34 @@ export default createGlobalStyle`
     outline: 0;
     box-sizing: border-box;
   }
+
   *:focus {
     outline: 0;
   }
+
   html, body, #root {
-    /* height: 100%; */
+    height: 100%;
   }
+
   body {
     -webkit-font-smoothing: antialiased;
   }
   body, input , button {
     font: 14px 'Roboto', sans-serif;
   }
+
   a {
     text-decoration: none;
   }
+
   ul {
     list-style: none;
   }
+
   button {
     cursor: pointer;
   }
+
   div.Toastify__toast.Toastify__toast--error{
     background : #ee4d64;
   }
