@@ -23,6 +23,8 @@ module.exports = {
     'jsx-a11y/label-has-associated-control': 'off',
     'no-alert': 'off',
     'import/prefer-default-export': 'off',
+    'no-param-reassign': 'off',
+    'react/jsx-props-no-spreading': 'off',
   },
   settings: {
     'import/resolver': {
