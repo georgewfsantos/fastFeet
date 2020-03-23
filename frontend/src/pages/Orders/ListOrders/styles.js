@@ -86,7 +86,7 @@ export const ListItem = styled.div`
   > div > span {
     font-size: 14px;
     font-weight: bold;
-    color: ${props => (props.status ? props.status : '')};
+    color: ${props => (props.color ? props.color : '')};
   }
 
   #addressee,
