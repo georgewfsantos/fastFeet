@@ -10,7 +10,28 @@ import Queue from '../../lib/Queue';
 
 class OrderController {
   async index(req, res) {
-    const orders = await Order.findAll();
+    const orders = await Order.findAll({
+      attributes: [
+        'id',
+        'product',
+        'start_date',
+        'end_date',
+        'canceled_at',
+        'signature_id',
+      ],
+      include: [
+        {
+          model: Deliverer,
+          as: 'deliverer',
+          attributes: ['id', 'name'],
+        },
+        {
+          model: Addressee,
+          as: 'addressee',
+          attributes: ['id', 'name', 'city', 'state'],
+        },
+      ],
+    });
 
     return res.json(orders);
   }
