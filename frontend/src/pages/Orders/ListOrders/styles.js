@@ -86,7 +86,26 @@ export const ListItem = styled.div`
   > div > span {
     font-size: 14px;
     font-weight: bold;
-    color: ${props => (props.color ? props.color : '')};
+    color: ${props => props.color && props.color};
+    background: ${props => props.colorOpacity && props.colorOpacity};
+    padding: 0 5px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  #actions {
+    button {
+      border: none;
+      color: #c6c6c6;
+      font-size: 16px;
+      &:hover {
+        z-index: 2;
+        font-weight: bold;
+        font-size: 18px;
+        color: #999;
+      }
+    }
   }
 
   #addressee,
