@@ -3,5 +3,14 @@ export default function getRandomColor(array) {
 
   const randomColor = array[randomNumber];
 
-  return randomColor;
+  const randomFontColor = randomColor;
+
+  // return randomColor;
+
+  const rdm = {
+    randomColor,
+    randomFontColor,
+  };
+
+  return rdm;
 }

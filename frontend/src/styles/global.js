@@ -44,4 +44,5 @@ export default createGlobalStyle`
   div.Toastify__toast.Toastify__toast--success{
     background : #c2c5cc;
   }
+
 `;

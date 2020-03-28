@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Input } from '@rocketseat/unform';
 import { MdFiberManualRecord } from 'react-icons/md';
+import { darken } from 'polished';
+
 import Avatar from 'react-avatar';
+// import Actions from '~/components/Actions';
 
 import getRandomColor from '~/utils/getRandomColor';
 
@@ -17,6 +20,15 @@ export default function ListOrders() {
       const response = await api.get('/orders');
 
       response.data.forEach(order => {
+        order.random = getRandomColor([
+          '#F4EFFC',
+          '#FCF4EE',
+          '#EBFBFA',
+          '#FFEEF1',
+          '#F4F9EF',
+          '#FCFCEF',
+        ]);
+
         if (order.start_date === null) {
           order.status = 'PENDENTE';
           order.color = '#C1BC35';
@@ -46,7 +58,7 @@ export default function ListOrders() {
   return (
     <Container>
       <Title>Gerenciando encomendas</Title>
-      <Input id="buscar" name="buscar" />
+      <Input id="buscar" name="buscar" placeholder="Buscar por entregadores" />
 
       <OrderList>
         <ListHeader>
@@ -59,45 +71,41 @@ export default function ListOrders() {
           <div className="actions">Ações</div>
         </ListHeader>
         {orders.map(order => (
-          <ListItem
-            key={order.id}
-            color={order.color}
-            colorOpacity={order.colorOpacity}
-          >
-            <div id="order_id">{`#${order.id}`}</div>
-            <div id="addressee">{order.addressee.name}</div>
-            <div id="deliverer">
-              <Avatar
-                name={order.deliverer.name}
-                size="40"
-                round
-                color={getRandomColor([
-                  '#F4EFFC',
-                  '#FCF4EE',
-                  '#EBFBFA',
-                  '#FFEEF1',
-                  '#F4F9EF',
-                  '#FCFCEF',
-                ])}
-                fgColor="#999"
-                style={{
-                  margin: 5,
-                }}
-              />
-              {order.deliverer.name}
-            </div>
-            <div id="city">{order.addressee.city}</div>
-            <div id="state">{order.addressee.city}</div>
-            <div id="status">
-              <span>
-                <MdFiberManualRecord />
-                {order.status}
-              </span>
-            </div>
-            <div id="actions">
-              <button type="button">...</button>
-            </div>
-          </ListItem>
+          <>
+            <ListItem
+              key={order.id}
+              color={order.color}
+              colorOpacity={order.colorOpacity}
+            >
+              <div id="order_id">{`#${order.id}`}</div>
+              <div id="addressee">{order.addressee.name}</div>
+              <div id="deliverer">
+                <Avatar
+                  name={order.deliverer.name}
+                  size="40"
+                  round
+                  color={order.random.randomColor}
+                  fgColor={darken(0.2, order.random.randomFontColor)}
+                  style={{
+                    margin: 5,
+                  }}
+                />
+                {order.deliverer.name}
+              </div>
+              <div id="city">{order.addressee.city}</div>
+              <div id="state">{order.addressee.city}</div>
+              <div id="status">
+                <span>
+                  <MdFiberManualRecord />
+                  {order.status}
+                </span>
+              </div>
+              <div id="actions">
+                <button type="button">...</button>
+                {/* <Actions /> */}
+              </div>
+            </ListItem>
+          </>
         ))}
       </OrderList>
     </Container>

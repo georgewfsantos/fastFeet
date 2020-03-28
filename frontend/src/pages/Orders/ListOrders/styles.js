@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import logo from '~/assets/search.svg';
 
 export const Container = styled.div`
   display: flex;
@@ -18,8 +19,17 @@ export const Container = styled.div`
     height: 36px;
     width: 250px;
     margin-bottom: 15px;
-    padding: 15px;
+    padding: 20px 32px;
     border: #dddddd;
+    border-radius: 4px;
+    font-size: 16px;
+    background: #fff url(${logo}) no-repeat 10px center;
+    color: #666;
+
+    &::placeholder {
+      color: #999;
+      padding: 8px;
+    }
   }
 `;
 
@@ -95,7 +105,7 @@ export const ListItem = styled.div`
   }
 
   #actions {
-    button {
+    > button {
       border: none;
       color: #c6c6c6;
       font-size: 16px;
@@ -111,6 +121,11 @@ export const ListItem = styled.div`
   #addressee,
   #deliverer {
     width: 25%;
+  }
+
+  #deliverer > div > div > div > span > span {
+    font-weight: bold;
+    font-size: 16px;
   }
 
   #actions {
