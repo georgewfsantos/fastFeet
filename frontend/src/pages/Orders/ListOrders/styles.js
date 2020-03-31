@@ -13,22 +13,48 @@ export const Container = styled.div`
   width: 100%;
   max-width: 1000px;
 
-  input {
-    align-self: flex-start;
-    margin-top: 20px;
-    height: 36px;
-    width: 250px;
-    margin-bottom: 15px;
-    padding: 20px 32px;
-    border: #dddddd;
-    border-radius: 4px;
-    font-size: 16px;
-    background: #fff url(${logo}) no-repeat 10px center;
-    color: #666;
+  .underTitle {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 15px;
 
-    &::placeholder {
-      color: #999;
-      padding: 8px;
+    input {
+      height: 36px;
+      width: 250px;
+
+      padding: 20px 32px;
+      border: #dddddd;
+      border-radius: 4px;
+      font-size: 16px;
+      background: #fff url(${logo}) no-repeat 10px center;
+      color: #666;
+
+      &::placeholder {
+        color: #999;
+        padding: 8px;
+      }
+    }
+
+    button {
+      display: flex;
+      background: none;
+      align-items: center;
+      justify-content: center;
+      border: none;
+      background-color: #7d40e7;
+      height: 36px;
+      width: 142px;
+      border-radius: 4px;
+      font-size: 14px;
+      font-weight: bold;
+      padding: 4px;
+      color: #fff;
+
+      svg {
+        margin-right: 4px;
+      }
     }
   }
 `;
@@ -64,7 +90,6 @@ export const ListHeader = styled.div`
 
   .actions {
     justify-self: flex-end;
-
     text-align: end;
   }
 `;
@@ -109,12 +134,20 @@ export const ListItem = styled.div`
       border: none;
       color: #c6c6c6;
       font-size: 16px;
+
+      svg {
+        margin-right: 5px;
+      }
       &:hover {
         z-index: 2;
         font-weight: bold;
         font-size: 18px;
         color: #999;
       }
+    }
+
+    #actions > div > div > button {
+      border-bottom: 1px solid #eee;
     }
   }
 

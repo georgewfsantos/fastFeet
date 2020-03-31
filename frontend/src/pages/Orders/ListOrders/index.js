@@ -1,10 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { Input } from '@rocketseat/unform';
-import { MdFiberManualRecord } from 'react-icons/md';
+import {
+  MdFiberManualRecord,
+  MdAdd,
+  MdCreate,
+  MdDelete,
+  MdVisibility,
+} from 'react-icons/md';
 import { darken } from 'polished';
 
 import Avatar from 'react-avatar';
-// import Actions from '~/components/Actions';
+import Actions from '~/components/Actions';
 
 import getRandomColor from '~/utils/getRandomColor';
 
@@ -14,6 +20,7 @@ import { Container, Title, ListHeader, OrderList, ListItem } from './styles';
 
 export default function ListOrders() {
   const [orders, setOrders] = useState([]);
+  const [visible, setVisible] = useState(false);
 
   useEffect(() => {
     async function loadOrders() {
@@ -55,10 +62,25 @@ export default function ListOrders() {
     }
     loadOrders();
   }, []);
+
+  function handleVisible() {
+    setVisible(!visible);
+  }
+
   return (
     <Container>
       <Title>Gerenciando encomendas</Title>
-      <Input id="buscar" name="buscar" placeholder="Buscar por entregadores" />
+      <div className="underTitle">
+        <Input
+          id="buscar"
+          name="buscar"
+          placeholder="Buscar por entregadores"
+        />
+        <button type="button">
+          <MdAdd size={20} color="#fff" />
+          Cadastrar
+        </button>
+      </div>
 
       <OrderList>
         <ListHeader>
@@ -71,41 +93,54 @@ export default function ListOrders() {
           <div className="actions">Ações</div>
         </ListHeader>
         {orders.map(order => (
-          <>
-            <ListItem
-              key={order.id}
-              color={order.color}
-              colorOpacity={order.colorOpacity}
-            >
-              <div id="order_id">{`#${order.id}`}</div>
-              <div id="addressee">{order.addressee.name}</div>
-              <div id="deliverer">
-                <Avatar
-                  name={order.deliverer.name}
-                  size="40"
-                  round
-                  color={order.random.randomColor}
-                  fgColor={darken(0.2, order.random.randomFontColor)}
-                  style={{
-                    margin: 5,
-                  }}
-                />
-                {order.deliverer.name}
-              </div>
-              <div id="city">{order.addressee.city}</div>
-              <div id="state">{order.addressee.city}</div>
-              <div id="status">
-                <span>
-                  <MdFiberManualRecord />
-                  {order.status}
-                </span>
-              </div>
-              <div id="actions">
-                <button type="button">...</button>
-                {/* <Actions /> */}
-              </div>
-            </ListItem>
-          </>
+          <ListItem
+            key={order.id}
+            color={order.color}
+            colorOpacity={order.colorOpacity}
+          >
+            <div id="order_id">{`#${order.id}`}</div>
+            <div id="addressee">{order.addressee.name}</div>
+            <div id="deliverer">
+              <Avatar
+                name={order.deliverer.name}
+                size="40"
+                round
+                color={order.random.randomColor}
+                fgColor={darken(0.2, order.random.randomFontColor)}
+                style={{
+                  margin: 5,
+                }}
+              />
+              {order.deliverer.name}
+            </div>
+            <div id="city">{order.addressee.city}</div>
+            <div id="state">{order.addressee.city}</div>
+            <div id="status">
+              <span>
+                <MdFiberManualRecord />
+                {order.status}
+              </span>
+            </div>
+            <div id="actions">
+              <button type="button" onClick={handleVisible}>
+                ...
+              </button>
+              <Actions visible={visible}>
+                <button type="button" onClick={() => {}}>
+                  <MdVisibility size={10} color="#7d40e7" />
+                  Visualizar
+                </button>
+                <button type="button" onClick={() => {}}>
+                  <MdCreate size={10} color="#4D85EE" />
+                  Editar
+                </button>
+                <button type="button" onClick={() => {}}>
+                  <MdDelete size={10} color="#DE3B3B" />
+                  Excluir
+                </button>
+              </Actions>
+            </div>
+          </ListItem>
         ))}
       </OrderList>
     </Container>
