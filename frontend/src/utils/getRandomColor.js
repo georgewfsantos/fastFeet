@@ -1,16 +1,14 @@
+import { darken } from 'polished';
+
 export default function getRandomColor(array) {
   const randomNumber = Math.floor(Math.random() * array.length);
 
-  const randomColor = array[randomNumber];
+  const bgColor = array[randomNumber];
 
-  const randomFontColor = randomColor;
-
-  // return randomColor;
-
-  const rdm = {
-    randomColor,
-    randomFontColor,
+  const avatarColors = {
+    bgColor,
+    fontColor: darken(0.2, bgColor),
   };
 
-  return rdm;
+  return avatarColors;
 }
