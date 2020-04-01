@@ -1,8 +1,49 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 
 import Addressee from '../models/Addressee';
 
 class AddresseeController {
+  async index(req, res) {
+    const { addresseeName } = req.query;
+
+    const addressees = addresseeName
+      ? await Addressee.findAll({
+          where: {
+            name: {
+              [Op.or]: {
+                [Op.iLike]: `%${addresseeName}`,
+                [Op.iLike]: `${addresseeName}%`,
+              },
+            },
+          },
+          attributes: [
+            'id',
+            'name',
+            'street',
+            'number',
+            'complement',
+            'city',
+            'state',
+            'zip_code',
+          ],
+        })
+      : await Addressee.findAll({
+          attributes: [
+            'id',
+            'name',
+            'street',
+            'number',
+            'complement',
+            'city',
+            'state',
+            'zip_code',
+          ],
+        });
+
+    return res.json(addressees);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),

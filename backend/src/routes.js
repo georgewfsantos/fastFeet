@@ -44,15 +44,17 @@ routes.use(authMiddleware);
 
 routes.post('/files', upload.single('file'), FileController.store);
 
+routes.get('/deliverers', DelivererController.index);
 routes.post('/deliverers', upload.single('file'), DelivererController.store);
 routes.put('/deliverers/:deliverer_id/delete', DelivererController.update);
 routes.delete('/deliverers/deliverer_id', DelivererController.delete);
 
 routes.get('/orders', OrderController.index);
 routes.post('/orders', OrderController.store);
-routes.put('/orders/order_id/update', OrderController.update);
+routes.put('/orders/:order_id/update', OrderController.update);
 routes.delete('/orders/:order_id/delete', OrderController.delete);
 
+routes.get('/addressees', AddresseeController.index);
 routes.post('/addressees', AddresseeController.store);
 
 routes.get('/orders/delivery_issues', DeliveryIssueController.index);

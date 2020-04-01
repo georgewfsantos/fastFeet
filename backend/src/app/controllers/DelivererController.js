@@ -1,8 +1,46 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 
 import Deliverer from '../models/Deliverer';
+import File from '../models/File';
 
 class DelivererController {
+  async index(req, res) {
+    const { delivererName } = req.query;
+
+    const deliverers = delivererName
+      ? await Deliverer.findAll({
+          where: {
+            name: {
+              [Op.or]: {
+                [Op.iLike]: `%${delivererName}`,
+                [Op.iLike]: `${delivererName}%`,
+              },
+            },
+          },
+          attributes: ['id', 'name', 'email'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'name', 'path'],
+            },
+          ],
+        })
+      : await Deliverer.findAll({
+          attributes: ['id', 'name', 'email'],
+          include: [
+            {
+              model: File,
+              as: 'avatar',
+              attributes: ['id', 'name', 'path'],
+            },
+          ],
+        });
+
+    return res.json(deliverers);
+  }
+
   async store(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string().required(),

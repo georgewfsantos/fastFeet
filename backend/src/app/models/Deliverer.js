@@ -17,8 +17,9 @@ class Deliverer extends Model {
 
   static associate(models) {
     this.belongsTo(models.File, {
-      foreignKey:
-        'avatar_id' /* name of the column in the deliverers model(table) that will receive the file id */,
+      foreignKey: 'avatar_id',
+      as:
+        'avatar' /* name of the column in the deliverers model(table) that will receive the file id */,
     });
   }
 }

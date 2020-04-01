@@ -1,4 +1,5 @@
 import * as Yup from 'yup';
+import { Op } from 'sequelize';
 
 import Order from '../models/Order';
 import Deliverer from '../models/Deliverer';
@@ -10,28 +11,61 @@ import Queue from '../../lib/Queue';
 
 class OrderController {
   async index(req, res) {
-    const orders = await Order.findAll({
-      attributes: [
-        'id',
-        'product',
-        'start_date',
-        'end_date',
-        'canceled_at',
-        'signature_id',
-      ],
-      include: [
-        {
-          model: Deliverer,
-          as: 'deliverer',
-          attributes: ['id', 'name'],
-        },
-        {
-          model: Addressee,
-          as: 'addressee',
-          attributes: ['id', 'name', 'city', 'state'],
-        },
-      ],
-    });
+    const { productName } = req.query;
+
+    const orders = productName
+      ? await Order.findAll({
+          where: {
+            product: {
+              [Op.or]: {
+                [Op.iLike]: `%${productName}`,
+                [Op.iLike]: `${productName}%`,
+              },
+            },
+          },
+          attributes: [
+            'id',
+            'product',
+            'start_date',
+            'end_date',
+            'canceled_at',
+            'signature_id',
+          ],
+          include: [
+            {
+              model: Deliverer,
+              as: 'deliverer',
+              attributes: ['id', 'name'],
+            },
+            {
+              model: Addressee,
+              as: 'addressee',
+              attributes: ['id', 'name', 'city', 'state'],
+            },
+          ],
+        })
+      : await Order.findAll({
+          attributes: [
+            'id',
+            'product',
+            'start_date',
+            'end_date',
+            'canceled_at',
+            'signature_id',
+          ],
+          include: [
+            {
+              model: Deliverer,
+              as: 'deliverer',
+              attributes: ['id', 'name'],
+            },
+            {
+              model: Addressee,
+              as: 'addressee',
+              attributes: ['id', 'name', 'city', 'state'],
+            },
+          ],
+        });
 
     return res.json(orders);
   }
