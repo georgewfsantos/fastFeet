@@ -99,8 +99,6 @@ export default function ListOrders() {
         }
       });
 
-      console.log(searchTerm);
-
       setOrders(response.data);
     } catch (err) {
       toast.error(
@@ -111,7 +109,7 @@ export default function ListOrders() {
 
   return (
     <Container>
-      <Title>Gerenciando entregadores</Title>
+      <Title>Gerenciando encomendas</Title>
       <div className="underTitle">
         <Form onSubmit={handleSearch}>
           <SearchInput
