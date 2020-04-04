@@ -120,7 +120,7 @@ export default function ListOrders() {
         </Form>
         <button type="button" onClick={handleNew}>
           <MdAdd size={20} color="#fff" />
-          Cadastrar
+          CADASTRAR
         </button>
       </div>
 

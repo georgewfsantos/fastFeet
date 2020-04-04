@@ -12,36 +12,81 @@ export const Container = styled.div`
   width: 100%;
   max-width: 900px;
 
-  .underTitle {
+  form {
     width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    margin-top: 15px;
 
-    button {
+    .underTitle {
+      width: 100%;
       display: flex;
-      background: none;
-      align-items: center;
-      justify-content: center;
-      border: none;
-      background-color: #7d40e7;
-      height: 36px;
-      width: 112px;
-      border-radius: 4px;
-      font-size: 14px;
-      font-weight: bold;
-      padding: 4px;
-      color: #fff;
+      justify-content: flex-end;
 
-      svg {
-        margin-right: 4px;
+      button {
+        display: flex;
+        background: none;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        background-color: #7d40e7;
+        height: 36px;
+        width: 112px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        padding: 4px;
+        color: #fff;
+
+        svg {
+          margin-right: 4px;
+        }
+      }
+
+      #backButton {
+        background-color: #cccccc;
+        margin-right: 10px;
       }
     }
 
-    #backButton {
-      background-color: #cccccc;
-      margin-right: 10px;
+    .white-wrapper {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      padding: 20px;
+      margin-top: 15px;
+      border-radius: 4px;
+
+      label {
+        color: #444444;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 17px;
+        margin-left: 4px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+      }
+
+      input {
+        width: 100%;
+        max-width: 840px;
+        align-self: center;
+        height: 45px;
+        border-radius: 4px;
+        border: 1px solid #dddddd;
+        padding: 10px;
+        margin-bottom: 15px;
+      }
+
+      .input-group {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+
+        flex-direction: row;
+        width: 100%;
+
+        label {
+          margin-bottom: 15px;
+        }
+      }
     }
   }
 `;
