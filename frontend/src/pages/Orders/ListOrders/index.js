@@ -4,7 +4,7 @@ import { Form } from '@unform/web';
 import { toast } from 'react-toastify';
 
 import ListItem from '~/pages/Orders/ListItem';
-import SearchInput from '~/components/SearchInput';
+import Input from '~/components/Input';
 
 import getRandomColor from '~/utils/getRandomColor';
 
@@ -112,7 +112,7 @@ export default function ListOrders() {
       <Title>Gerenciando encomendas</Title>
       <div className="underTitle">
         <Form onSubmit={handleSearch}>
-          <SearchInput
+          <Input
             id="buscar"
             name="buscar"
             placeholder="Buscar por entregadores"

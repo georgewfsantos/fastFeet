@@ -1,17 +1,33 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { MdCheck, MdChevronLeft } from 'react-icons/md';
 import { Form } from '@unform/web';
+import { toast } from 'react-toastify';
 
 import AsyncInput from '~/components/AsyncInput';
+import Input from '~/components/Input';
 
 import api from '~/services/api';
+import history from '~/services/history';
 
 import { Container, Title } from './sytles';
 
 export default function NewOrder() {
-  // const formRef = useRef(null);
+  async function handleSubmit({ product, deliverer, addressee }) {
+    try {
+      await api.post('/orders', {
+        deliverer_id: deliverer,
+        addressee_id: addressee,
+        product,
+      });
 
-  useEffect(() => {}, []);
+      toast.success('Encomenda cadastrada com sucesso !');
+      history.push('/orders');
+    } catch (error) {
+      toast.error(
+        'Não foi possível cadastrar a encomenda. Verifique os dados e tente novamente'
+      );
+    }
+  }
 
   const customStyles = {
     container: provided => ({
@@ -104,14 +120,14 @@ export default function NewOrder() {
 
   return (
     <Container>
-      <Title>Gerenciando encomendas</Title>
-      <Form onSubmit={() => {}}>
+      <Title>Cadastrando encomendas</Title>
+      <Form onSubmit={handleSubmit}>
         <div className="underTitle">
           <button type="button" onClick={() => {}} id="backButton">
             <MdChevronLeft size={20} color="#fff" />
             VOLTAR
           </button>
-          <button type="button" onClick={() => {}}>
+          <button type="submit">
             <MdCheck size={20} color="#fff" />
             SALVAR
           </button>
@@ -161,7 +177,12 @@ export default function NewOrder() {
             </div>
           </div>
           <label htmlFor="product">Nome do produto</label>
-          <input type="text" id="product" name="product" />
+          <Input
+            type="text"
+            id="product"
+            name="product"
+            placeholder="Produto"
+          />
         </div>
       </Form>
     </Container>

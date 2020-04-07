@@ -41,9 +41,10 @@ export default function ListItem({ order }) {
       }
     }
   }
-  function handleDetails(id) {
+
+  /* function handleDetails(id) {
     history.push(`/orders/${id}/details`);
-  }
+  } */
 
   return (
     <Container
@@ -79,18 +80,21 @@ export default function ListItem({ order }) {
           ...
         </button>
         <Actions visible={visible}>
-          <button type="button" onClick={() => handleDetails(order.id)}>
-            <MdVisibility size={10} color="#7d40e7" />
-            Visualizar
-          </button>
-          <button type="button" onClick={() => handleEdit(order.id)}>
-            <MdCreate size={10} color="#4D85EE" />
-            Editar
-          </button>
-          <button type="button" onClick={() => handleDelete(order.id)}>
-            <MdDelete size={10} color="#DE3B3B" />
-            Excluir
-          </button>
+          <>
+            <button type="button" onClick={() => {}}>
+              <MdVisibility size={10} color="#7d40e7" />
+              Visualizar
+            </button>
+
+            <button type="button" onClick={() => handleEdit(order.id)}>
+              <MdCreate size={10} color="#4D85EE" />
+              Editar
+            </button>
+            <button type="button" onClick={() => handleDelete(order.id)}>
+              <MdDelete size={10} color="#DE3B3B" />
+              Excluir
+            </button>
+          </>
         </Actions>
       </div>
     </Container>
