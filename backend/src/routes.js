@@ -50,6 +50,7 @@ routes.put('/deliverers/:deliverer_id/delete', DelivererController.update);
 routes.delete('/deliverers/deliverer_id', DelivererController.delete);
 
 routes.get('/orders', OrderController.index);
+routes.get('/orders/:id/details', OrderController.show);
 routes.post('/orders', OrderController.store);
 routes.put('/orders/:order_id/update', OrderController.update);
 routes.delete('/orders/:order_id/delete', OrderController.delete);

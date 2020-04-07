@@ -121,6 +121,35 @@ class OrderController {
     return res.json(order);
   }
 
+  async show(req, res) {
+    const { id } = req.params;
+
+    const order = await Order.findByPk(id, {
+      attributes: [
+        'id',
+        'product',
+        'start_date',
+        'end_date',
+        'canceled_at',
+        'signature_id',
+      ],
+      include: [
+        {
+          model: Deliverer,
+          as: 'deliverer',
+          attributes: ['id', 'name'],
+        },
+        {
+          model: Addressee,
+          as: 'addressee',
+          attributes: ['id', 'name', 'city', 'state'],
+        },
+      ],
+    });
+
+    return res.json(order);
+  }
+
   async update(req, res) {
     const schema = Yup.object().shape({
       deliverer_id: Yup.number(),
@@ -141,7 +170,6 @@ class OrderController {
     );
 
     return res.json({
-      ...order,
       id,
       deliverer_id,
       addressee_id,
