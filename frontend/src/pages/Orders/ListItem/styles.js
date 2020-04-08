@@ -31,6 +31,20 @@ export const Container = styled.div`
   }
 
   #actions {
+    strong {
+      font-size: 14px;
+      margin-bottom: 5px;
+    }
+
+    #zip {
+      border-bottom: 1px solid #dddd;
+      padding-bottom: 8px;
+    }
+
+    #dates {
+      margin-top: 8px;
+    }
+
     > button {
       border: none;
       color: #c6c6c6;
