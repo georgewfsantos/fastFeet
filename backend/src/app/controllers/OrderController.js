@@ -40,7 +40,15 @@ class OrderController {
             {
               model: Addressee,
               as: 'addressee',
-              attributes: ['id', 'name', 'city', 'state'],
+              attributes: [
+                'id',
+                'name',
+                'street',
+                'number',
+                'city',
+                'zip_code',
+                'state',
+              ],
             },
           ],
         })
@@ -62,7 +70,15 @@ class OrderController {
             {
               model: Addressee,
               as: 'addressee',
-              attributes: ['id', 'name', 'city', 'state'],
+              attributes: [
+                'id',
+                'name',
+                'street',
+                'number',
+                'city',
+                'zip_code',
+                'state',
+              ],
             },
           ],
         });
