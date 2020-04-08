@@ -1,21 +1,19 @@
 import React, { useState } from 'react';
 import Avatar from 'react-avatar';
 import { toast } from 'react-toastify';
+import format from 'date-fns/format';
+import pt from 'date-fns/locale/pt-BR';
 
 import PropTypes from 'prop-types';
 
-import {
-  MdFiberManualRecord,
-  MdCreate,
-  MdDelete,
-  MdVisibility,
-} from 'react-icons/md';
+import { MdFiberManualRecord, MdCreate, MdDelete } from 'react-icons/md';
 import history from '~/services/history';
 
 import Actions from '~/components/Actions';
 
 import { Container } from './styles';
 import api from '~/services/api';
+import Modal from '~/components/Modal';
 
 export default function ListItem({ order }) {
   const [visible, setVisible] = useState(false);
@@ -42,13 +40,9 @@ export default function ListItem({ order }) {
     }
   }
 
-  /* function handleDetails(id) {
-    history.push(`/orders/${id}/details`);
-  } */
-
   return (
     <Container
-      key={order.id}
+      // key={order.id}
       color={order.color}
       colorOpacity={order.colorOpacity}
     >
@@ -81,10 +75,23 @@ export default function ListItem({ order }) {
         </button>
         <Actions visible={visible}>
           <>
-            <button type="button" onClick={() => {}}>
-              <MdVisibility size={10} color="#7d40e7" />
-              Visualizar
-            </button>
+            <Modal>
+              <>
+                <strong>Informações sobre a encomenda</strong>
+                <small>{`${order.addressee.street}, ${order.addressee.number}`}</small>
+                <small>{`${order.addressee.city},${order.addressee.state} `}</small>
+                <small id="zip">{order.addressee.zip_code}</small>
+
+                <strong id="dates">Datas</strong>
+                <small>
+                  {format(new Date(order.start_date), 'dd/MM/yyyy', {
+                    locale: pt,
+                  })}
+                </small>
+                <small>{order.end_date ? order.end_date : 'n/a'}</small>
+                <small>Assinatura do destinatário</small>
+              </>
+            </Modal>
 
             <button type="button" onClick={() => handleEdit(order.id)}>
               <MdCreate size={10} color="#4D85EE" />
@@ -104,21 +111,31 @@ export default function ListItem({ order }) {
 ListItem.propTypes = {
   order: PropTypes.shape({
     id: PropTypes.number,
-    city: PropTypes.string,
+    start_date: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]),
+    end_date: PropTypes.oneOfType([
+      PropTypes.instanceOf(Date),
+      PropTypes.string,
+    ]),
+    status: PropTypes.string,
     color: PropTypes.string,
     colorOpacity: PropTypes.string,
     avatarColors: PropTypes.shape({
       bgColor: PropTypes.string,
       fontColor: PropTypes.string,
     }),
-    addressee: PropTypes.shape({
-      name: PropTypes.string,
-      city: PropTypes.string,
-      state: PropTypes.string,
-    }),
     deliverer: PropTypes.shape({
       name: PropTypes.string,
     }),
-    status: PropTypes.string,
+    addressee: PropTypes.shape({
+      name: PropTypes.string,
+      street: PropTypes.string,
+      number: PropTypes.number,
+      city: PropTypes.string,
+      zip_code: PropTypes.string,
+      state: PropTypes.string,
+    }),
   }).isRequired,
 };

@@ -123,7 +123,6 @@ export default function ListOrders() {
           CADASTRAR
         </button>
       </div>
-
       <OrderList>
         <ListHeader>
           <div className="order_id">ID</div>

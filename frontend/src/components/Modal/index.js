@@ -1,22 +1,31 @@
 import React from 'react';
+import { MdVisibility } from 'react-icons/md';
 import Popup from 'reactjs-popup';
-import PropTypes from 'prop-types';
 
-import './styles.css';
+import PropTypes from 'prop-types';
 
 export default function Modal({ children }) {
   return (
     <Popup
+      trigger={
+        <button type="button">
+          <MdVisibility size={10} color="#7d40e7" />
+          Visualizar
+        </button>
+      }
       modal
-      poisition="center center"
+      position="center center"
       contentStyle={{
-        width: '460px',
+        width: '450px',
         borderRadius: '4px',
         padding: '25px',
+        display: 'flex',
+        flexDirection: 'column',
+        strong: { fontSize: '14px' },
       }}
       overlayStyle={{
-        background: 'rgba(0,0,0,0.4)',
-        border: 'rgba(0,0,0,0.4)',
+        background: 'rgb(0, 0, 0, 0.7)',
+        border: 'rgb(0, 0, 0, 0.7)',
       }}
     >
       {children}
