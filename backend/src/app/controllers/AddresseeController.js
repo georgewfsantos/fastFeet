@@ -50,7 +50,9 @@ class AddresseeController {
       street: Yup.string().required(),
       number: Yup.number().required(),
       complement: Yup.string().required(),
-      state: Yup.string().required(),
+      state: Yup.string()
+        .max(2)
+        .required(),
       city: Yup.string().required(),
       zip_code: Yup.string().required(),
     });
