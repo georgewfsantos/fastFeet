@@ -41,11 +41,7 @@ export default function ListItem({ order }) {
   }
 
   return (
-    <Container
-      // key={order.id}
-      color={order.color}
-      colorOpacity={order.colorOpacity}
-    >
+    <Container color={order.color} colorOpacity={order.colorOpacity}>
       <div id="order_id">{`#${order.id}`}</div>
       <div id="addressee">{order.addressee.name}</div>
       <div id="deliverer">
@@ -80,7 +76,7 @@ export default function ListItem({ order }) {
                 <strong>Informações sobre a encomenda</strong>
                 <small>{`${order.addressee.street}, ${order.addressee.number}`}</small>
                 <small>{`${order.addressee.city},${order.addressee.state} `}</small>
-                <small id="zip">{order.addressee.zip_code}</small>
+                <small className="border">{order.addressee.zip_code}</small>
 
                 <strong id="dates">Datas</strong>
                 <small>
@@ -89,7 +85,7 @@ export default function ListItem({ order }) {
                     locale: pt,
                   })}
                 </small>
-                <small>
+                <small className="border">
                   Entrega:{' '}
                   {order.end_date
                     ? format(new Date(order.end_date), 'dd/MM/yyyy', {
@@ -97,7 +93,8 @@ export default function ListItem({ order }) {
                       })
                     : 'n/a'}
                 </small>
-                <small>Assinatura do destinatário</small>
+                <strong id="signature">Assinatura do destinatário</strong>
+                {order.signature && <img src={order.signature.url} alt="" />}
               </>
             </Modal>
 
@@ -144,6 +141,9 @@ ListItem.propTypes = {
       city: PropTypes.string,
       zip_code: PropTypes.string,
       state: PropTypes.string,
+    }),
+    signature: PropTypes.shape({
+      url: PropTypes.string,
     }),
   }).isRequired,
 };

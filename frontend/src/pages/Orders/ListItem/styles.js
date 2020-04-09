@@ -36,13 +36,19 @@ export const Container = styled.div`
       margin-bottom: 5px;
     }
 
-    #zip {
+    .border {
       border-bottom: 1px solid #dddd;
       padding-bottom: 8px;
     }
 
-    #dates {
+    #dates,
+    #signature {
       margin-top: 8px;
+    }
+
+    img {
+      width: 100%;
+      height: 40px;
     }
 
     > button {
