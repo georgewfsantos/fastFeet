@@ -4,6 +4,7 @@ import { Op } from 'sequelize';
 import Order from '../models/Order';
 import Deliverer from '../models/Deliverer';
 import Addressee from '../models/Addressee';
+import File from '../models/File';
 
 import NewOrderMail from '../jobs/NewOrderMail';
 import CancellationMail from '../jobs/CancellationMail';
@@ -29,7 +30,6 @@ class OrderController {
             'start_date',
             'end_date',
             'canceled_at',
-            'signature_id',
           ],
           include: [
             {
@@ -49,6 +49,11 @@ class OrderController {
                 'zip_code',
                 'state',
               ],
+            },
+            {
+              model: File,
+              as: 'signature',
+              attributes: ['id', 'name', 'path', 'url'],
             },
           ],
         })
@@ -59,7 +64,6 @@ class OrderController {
             'start_date',
             'end_date',
             'canceled_at',
-            'signature_id',
           ],
           include: [
             {
@@ -79,6 +83,11 @@ class OrderController {
                 'zip_code',
                 'state',
               ],
+            },
+            {
+              model: File,
+              as: 'signature',
+              attributes: ['id', 'name', 'path', 'url'],
             },
           ],
         });
