@@ -15,23 +15,45 @@ export const Container = styled.div`
   color: #666666;
 
   > div {
-    width: 14%;
-    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: left;
+    width: 100%;
+    max-width: 250px;
   }
 
-  > div > span {
-    font-size: 14px;
-    font-weight: bold;
-    color: ${props => props.color && props.color};
-    background: ${props => props.colorOpacity && props.colorOpacity};
-    padding: 0 5px;
-    border-radius: 10px;
-    display: flex;
+  #avatar {
+    justify-content: space-between;
+  }
 
-    align-items: center;
+  #avatar > div > div > div > span > span {
+    font-size: 16px;
+    font-weight: bold;
   }
 
   #actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    > button {
+      border: none;
+      color: #c6c6c6;
+      font-size: 16px;
+      margin-right: 15px;
+
+      svg {
+        margin-right: 5px;
+      }
+      &:hover {
+        z-index: 2;
+        font-weight: bold;
+        font-size: 18px;
+        color: #999;
+      }
+    }
+
     strong {
       font-size: 14px;
       margin-bottom: 5px;
@@ -45,11 +67,6 @@ export const Container = styled.div`
     #dates,
     #signature {
       margin-top: 8px;
-    }
-
-    img {
-      width: 100%;
-      height: 40px;
     }
 
     > button {
@@ -67,28 +84,5 @@ export const Container = styled.div`
         color: #999;
       }
     }
-
-    #actions > div > div > button {
-      border-bottom: 1px solid #eee;
-    }
-  }
-
-  #addressee,
-  #deliverer {
-    width: 25%;
-    display: flex;
-    align-items: center;
-  }
-
-  #deliverer > div > div > div > span > span {
-    font-weight: bold;
-    font-size: 16px;
-  }
-
-  #actions {
-    justify-self: flex-end;
-
-    text-align: end;
-    margin-right: 5px;
   }
 `;

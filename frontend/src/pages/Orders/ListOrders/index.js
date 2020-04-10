@@ -115,7 +115,7 @@ export default function ListOrders() {
           <Input
             id="buscar"
             name="buscar"
-            placeholder="Buscar por entregadores"
+            placeholder="Buscar por encomendas"
           />
         </Form>
         <button type="button" onClick={handleNew}>

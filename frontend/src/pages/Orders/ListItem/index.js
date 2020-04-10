@@ -81,17 +81,19 @@ export default function ListItem({ order }) {
                 <strong id="dates">Datas</strong>
                 <small>
                   Retirada:
-                  {format(new Date(order.start_date), 'dd/MM/yyyy', {
-                    locale: pt,
-                  })}
+                  {order.start_date
+                    ? format(new Date(order.start_date), 'dd/MM/yyyy', {
+                        locale: pt,
+                      })
+                    : 'N/A'}
                 </small>
                 <small className="border">
-                  Entrega:{' '}
+                  Entrega:
                   {order.end_date
                     ? format(new Date(order.end_date), 'dd/MM/yyyy', {
                         locale: pt,
                       })
-                    : 'n/a'}
+                    : 'N/A'}
                 </small>
                 <strong id="signature">Assinatura do destinatário</strong>
                 {order.signature && <img src={order.signature.url} alt="" />}

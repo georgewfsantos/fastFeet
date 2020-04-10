@@ -123,7 +123,11 @@ export default function NewOrder() {
       <Title>Cadastrando encomendas</Title>
       <Form onSubmit={handleSubmit}>
         <div className="underTitle">
-          <button type="button" onClick={() => {}} id="backButton">
+          <button
+            type="button"
+            onClick={() => history.goBack()}
+            id="backButton"
+          >
             <MdChevronLeft size={20} color="#fff" />
             VOLTAR
           </button>
