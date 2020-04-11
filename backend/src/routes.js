@@ -46,6 +46,7 @@ routes.post('/files', upload.single('file'), FileController.store);
 
 routes.get('/deliverers', DelivererController.index);
 routes.post('/deliverers', upload.single('file'), DelivererController.store);
+routes.get('/deliverers/:deliverer_id', DelivererController.show);
 routes.put('/deliverers/:deliverer_id/delete', DelivererController.update);
 routes.delete('/deliverers/deliverer_id', DelivererController.delete);
 

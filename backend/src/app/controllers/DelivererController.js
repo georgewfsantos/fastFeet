@@ -71,6 +71,14 @@ class DelivererController {
     return res.json(deliverer);
   }
 
+  async show(req, res) {
+    const { deliverer_id } = req.params;
+
+    const deliverer = await Deliverer.findByPk(deliverer_id);
+
+    return res.json(deliverer);
+  }
+
   async update(req, res) {
     const schema = Yup.object().shape({
       name: Yup.string(),
