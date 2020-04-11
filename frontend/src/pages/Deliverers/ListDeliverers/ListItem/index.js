@@ -16,7 +16,7 @@ export default function ListItem({ deliverer }) {
   const [visible, setVisible] = useState(false);
 
   function handleEdit(id) {
-    history.push(`deliverers/${id}/editDeliverer`);
+    history.push(`deliverers/${id}/edit`);
   }
 
   async function handleDelete(id) {
