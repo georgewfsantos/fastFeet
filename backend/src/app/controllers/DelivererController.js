@@ -23,7 +23,7 @@ class DelivererController {
             {
               model: File,
               as: 'avatar',
-              attributes: ['id', 'name', 'path'],
+              attributes: ['id', 'name', 'path', 'url'],
             },
           ],
         })
@@ -33,7 +33,7 @@ class DelivererController {
             {
               model: File,
               as: 'avatar',
-              attributes: ['id', 'name', 'path'],
+              attributes: ['id', 'name', 'path', 'url'],
             },
           ],
         });
@@ -47,6 +47,7 @@ class DelivererController {
       email: Yup.string()
         .email()
         .required(),
+      avatar_id: Yup.string(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -61,13 +62,15 @@ class DelivererController {
       return res.status(400).json({ error: 'Email has already been taken.' });
     }
 
-    const { id, name, email } = req.body;
+    const { id, name, email, avatar_id } = req.body;
 
     const deliverer = await Deliverer.create({
       id,
       name,
       email,
+      avatar_id,
     });
+
     return res.json(deliverer);
   }
 
