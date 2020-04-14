@@ -85,7 +85,7 @@ export default function EditDeliverer() {
 
   return (
     <Container>
-      <Title>Edição de encomendas</Title>
+      <Title>Edição de entregadores</Title>
       <Form ref={formRef} onSubmit={handleSubmit}>
         <div className="underTitle">
           <button
@@ -125,6 +125,7 @@ export default function EditDeliverer() {
             Email
           </label>
           <AsyncInput
+            className="bottomInput"
             type="text"
             name="email"
             loadOptions={loadDelivererEmail}

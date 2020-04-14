@@ -38,17 +38,21 @@ export default function ListItem({ deliverer }) {
   }
 
   return (
-    <Container /* color={deliverer.color} */>
+    <Container>
       <div id="deliverer_id">{`#${deliverer.id}`}</div>
 
       <div id="avatar">
-        <Avatar
-          name={deliverer.name}
-          size="40"
-          round
-          color={deliverer.avatarColors.bgColor}
-          fgColor={deliverer.avatarColors.fontColor}
-        />
+        {deliverer.avatar?.url ? (
+          <img src={deliverer.avatar?.url} alt="Insert " />
+        ) : (
+          <Avatar
+            name={deliverer.name}
+            size="40"
+            round
+            color={deliverer.avatarColors.bgColor}
+            fgColor={deliverer.avatarColors.fontColor}
+          />
+        )}
       </div>
       <div id="name">{deliverer.name}</div>
       <div id="email">{deliverer.email}</div>
@@ -79,6 +83,9 @@ ListItem.propTypes = {
     id: PropTypes.number,
     name: PropTypes.string,
     email: PropTypes.string,
+    avatar: PropTypes.shape({
+      url: PropTypes.string,
+    }),
     color: PropTypes.string,
     avatarColors: PropTypes.shape({
       bgColor: PropTypes.string,

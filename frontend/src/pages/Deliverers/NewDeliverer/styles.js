@@ -64,8 +64,28 @@ export const Container = styled.div`
         margin-top: 15px;
       }
 
-      .bottomInput {
+      input {
+        width: 100%;
+        max-width: 840px;
+        align-self: center;
+        height: 45px;
+        border-radius: 4px;
+        border: 1px solid #dddddd;
+        padding: 10px;
         margin-bottom: 15px;
+      }
+
+      .input-group {
+        display: flex;
+        align-items: center;
+        padding: 15px 0;
+
+        flex-direction: row;
+        width: 100%;
+
+        label {
+          margin-bottom: 15px;
+        }
       }
     }
   }

@@ -25,11 +25,23 @@ export const Container = styled.div`
 
   #avatar {
     justify-content: space-between;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+    }
   }
 
   #avatar > div > div > div > span > span {
     font-size: 16px;
     font-weight: bold;
+  }
+
+  #actions > div > div {
+    top: calc(100% + 20px);
+    left: -67px;
+    height: 60px;
   }
 
   #actions {
