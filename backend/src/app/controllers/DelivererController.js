@@ -47,7 +47,6 @@ class DelivererController {
       email: Yup.string()
         .email()
         .required(),
-      avatar_id: Yup.string(),
     });
 
     if (!(await schema.isValid(req.body))) {
@@ -92,20 +91,10 @@ class DelivererController {
       return res.status(400).json({ error: 'Validation failed' });
     }
 
-    const { email } = req.body;
+    // const { email } = req.body;
     const deliverer = await Deliverer.findByPk(req.params.id);
 
-    if (email !== deliverer.email) {
-      const emailExists = await Deliverer.findOne({
-        where: { email },
-      });
-
-      if (emailExists) {
-        return res.status(400).json({ error: 'Email has already been taken.' });
-      }
-    }
-
-    const { id, name, avatar_id } = await deliverer.update(req.body);
+    const { id, name, email, avatar_id } = await deliverer.update(req.body);
 
     return res.json({
       id,
