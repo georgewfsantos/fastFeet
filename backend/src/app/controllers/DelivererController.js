@@ -91,13 +91,11 @@ class DelivererController {
       return res.status(400).json({ error: 'Validation failed' });
     }
 
-    // const { email } = req.body;
-    const deliverer = await Deliverer.findByPk(req.params.id);
+    const deliverer = await Deliverer.findByPk(req.params.deliverer_id);
 
-    const { id, name, email, avatar_id } = await deliverer.update(req.body);
+    const { name, email, avatar_id } = await deliverer.update(req.body);
 
     return res.json({
-      id,
       name,
       email,
       avatar_id,
@@ -115,9 +113,8 @@ class DelivererController {
       });
     }
 
-    await deliverer.destroy();
-
     try {
+      await deliverer.destroy();
       return res.json({ message: 'Deliverer was successfully deleted ' });
     } catch (err) {
       return res.status(400).json({ error: err });

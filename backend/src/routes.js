@@ -52,7 +52,7 @@ routes.put(
   upload.single('file'),
   DelivererController.update
 );
-routes.delete('/deliverers/deliverer_id/delete', DelivererController.delete);
+routes.delete('/deliverers/:deliverer_id/delete', DelivererController.delete);
 
 routes.get('/orders', OrderController.index);
 routes.get('/orders/:id/details', OrderController.show);
