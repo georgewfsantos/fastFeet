@@ -31,7 +31,7 @@ export default function ListItem({ deliverer }) {
         setVisible(false);
       } catch (error) {
         toast.error(
-          'Não foi possível cancelar a encomenda. Por favor, verifique os dados e tente novamente'
+          'Não foi possível excluir o entregador. Por favor, verifique os dados e tente novamente'
         );
       }
     }

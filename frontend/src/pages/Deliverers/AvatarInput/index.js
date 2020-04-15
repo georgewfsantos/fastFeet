@@ -1,9 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { useField } from '@unform/core';
 
+import { MdInsertPhoto } from 'react-icons/md';
 import api from '~/services/api';
-
-import insert from '~/assets/insert.svg';
 
 import { Container } from './styles';
 
@@ -39,8 +38,16 @@ export default function AvatarInput() {
   return (
     <Container>
       <label htmlFor="avatar">
-        <img src={preview || insert} alt="Insert " />
-
+        <div className="holder">
+          {preview ? (
+            <img src={preview} alt="Insert " />
+          ) : (
+            <>
+              <MdInsertPhoto size={35} color="#ddd" />
+              <span>Adicionar imagem</span>
+            </>
+          )}
+        </div>
         <input
           type="file"
           id="avatar"

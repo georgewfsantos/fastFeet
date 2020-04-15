@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 
 import AsyncInput from '~/components/AsyncInput';
+import AvatarInput from '~/pages/Deliverers/AvatarInput';
 
 import customStyles from '~/components/AsyncInput/customStyles';
 
@@ -22,8 +23,6 @@ export default function EditDeliverer() {
     async function loadDelivererInfo() {
       const response = await api.get(`/deliverers/${delivererId}`);
 
-      formRef.current.setData(response.data);
-
       formRef.current.setFieldValue('name', {
         value: response.data.name,
         label: response.data.name,
@@ -37,12 +36,9 @@ export default function EditDeliverer() {
     loadDelivererInfo();
   }, [delivererId]);
 
-  async function handleSubmit({ name, email }) {
+  async function handleSubmit(data) {
     try {
-      await api.put(`/deliverers/${delivererId}/update`, {
-        name,
-        email,
-      });
+      await api.put(`/deliverers/${delivererId}/update`, data);
 
       toast.success('Dados atualizados com sucesso');
       history.push('/deliverers');
@@ -103,6 +99,7 @@ export default function EditDeliverer() {
         </div>
 
         <div className="white-wrapper">
+          <AvatarInput name="avatar_id" delivererID={delivererId} />
           <label htmlFor="name">Nome</label>
           <AsyncInput
             type="text"

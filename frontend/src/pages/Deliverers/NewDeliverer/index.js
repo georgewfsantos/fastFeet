@@ -13,7 +13,6 @@ import { Container, Title } from './styles';
 
 export default function NewDeliverer() {
   async function handleSubmit(data) {
-    console.log(data);
     try {
       await api.post('/deliverers', data);
       toast.success('Dados cadastrados com sucesso');

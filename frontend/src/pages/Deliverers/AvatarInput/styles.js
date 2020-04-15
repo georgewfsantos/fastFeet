@@ -11,15 +11,24 @@ export const Container = styled.div`
       opacity: 0.7;
     }
 
-    img {
+    .holder {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      border: 1px dashed #dddddd;
+      border-radius: 50%;
       width: 100px;
       height: 100px;
-      border-radius: 50%;
-      border: 2px dashed #dddddd;
+      img {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+      }
 
-      svg {
-        width: 24px;
-        height: 24px;
+      span {
+        color: #ddd;
+        text-align: center;
       }
     }
 

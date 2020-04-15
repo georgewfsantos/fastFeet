@@ -19,7 +19,7 @@ export const Container = styled.div`
     align-items: center;
     justify-content: space-between;
     text-align: left;
-    width: 100%;
+    width: 20%;
     max-width: 250px;
   }
 

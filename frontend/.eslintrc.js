@@ -22,6 +22,7 @@ module.exports = {
     'react/jsx-filename-extension': ['warn', { extensions: ['.jsx', '.js'] }],
     'jsx-a11y/label-has-associated-control': 'off',
     'no-alert': 'off',
+    camelcase: 'off',
     'import/prefer-default-export': 'off',
     'no-param-reassign': 'off',
     'react/jsx-props-no-spreading': 'off',
