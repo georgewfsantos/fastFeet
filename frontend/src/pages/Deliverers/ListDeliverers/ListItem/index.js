@@ -21,13 +21,13 @@ export default function ListItem({ deliverer }) {
 
   async function handleDelete(id) {
     const permition = window.confirm(
-      'Tem certeza de que deseja cancelar esta encomenda ?'
+      'Tem certeza de que deseja excluir  os dados deste entregador ?'
     );
 
     if (permition) {
       try {
         await api.delete(`/deliverers/${id}/delete`);
-        toast.success('Ordem cancelada com sucesso');
+        toast.success('Dados excluídos com sucesso');
         setVisible(false);
       } catch (error) {
         toast.error(
