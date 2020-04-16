@@ -76,7 +76,16 @@ class DelivererController {
   async show(req, res) {
     const { deliverer_id } = req.params;
 
-    const deliverer = await Deliverer.findByPk(deliverer_id);
+    const deliverer = await Deliverer.findByPk(deliverer_id, {
+      attributes: ['id', 'name', 'email'],
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
 
     return res.json(deliverer);
   }
@@ -91,7 +100,15 @@ class DelivererController {
       return res.status(400).json({ error: 'Validation failed' });
     }
 
-    const deliverer = await Deliverer.findByPk(req.params.deliverer_id);
+    const deliverer = await Deliverer.findByPk(req.params.deliverer_id, {
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
 
     const { name, email, avatar_id } = await deliverer.update(req.body);
 
