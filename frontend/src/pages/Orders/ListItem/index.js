@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Avatar from 'react-avatar';
 import { toast } from 'react-toastify';
 import format from 'date-fns/format';
@@ -17,6 +17,16 @@ import Modal from '~/components/Modal';
 
 export default function ListItem({ order }) {
   const [visible, setVisible] = useState(false);
+  const [avatarPicture, setAvatarPicture] = useState(null);
+
+  useEffect(() => {
+    async function loadAvatar() {
+      const response = await api.get(`/deliverers/${order.deliverer.id}`);
+
+      setAvatarPicture(response.data?.avatar?.url);
+    }
+    loadAvatar();
+  }, [order.deliverer.id]);
 
   function handleEdit(id) {
     history.push(`orders/${id}/editOrder`);
@@ -45,16 +55,20 @@ export default function ListItem({ order }) {
       <div id="order_id">{`#${order.id}`}</div>
       <div id="addressee">{order.addressee.name}</div>
       <div id="deliverer">
-        <Avatar
-          name={order.deliverer.name}
-          size="40"
-          round
-          color={order.avatarColors.bgColor}
-          fgColor={order.avatarColors.fontColor}
-          style={{
-            margin: 5,
-          }}
-        />
+        {avatarPicture ? (
+          <img src={avatarPicture} alt="avatar" />
+        ) : (
+          <Avatar
+            name={order.deliverer.name}
+            size="40"
+            round
+            color={order.avatarColors.bgColor}
+            fgColor={order.avatarColors.fontColor}
+            style={{
+              marginRight: 6,
+            }}
+          />
+        )}
         {order.deliverer.name}
       </div>
       <div id="city">{order.addressee.city}</div>
@@ -135,6 +149,7 @@ ListItem.propTypes = {
     }),
     deliverer: PropTypes.shape({
       name: PropTypes.string,
+      id: PropTypes.number,
     }),
     addressee: PropTypes.shape({
       name: PropTypes.string,
