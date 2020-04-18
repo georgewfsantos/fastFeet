@@ -53,7 +53,7 @@ export default function ListItem({ order }) {
   return (
     <Container color={order.color} colorOpacity={order.colorOpacity}>
       <div id="order_id">{`#${order.id}`}</div>
-      <div id="addressee">{order.addressee.name}</div>
+      <div id="addressee">{order?.addressee?.name}</div>
       <div id="deliverer">
         {avatarPicture ? (
           <img src={avatarPicture} alt="avatar" />
@@ -71,8 +71,8 @@ export default function ListItem({ order }) {
         )}
         {order.deliverer.name}
       </div>
-      <div id="city">{order.addressee.city}</div>
-      <div id="state">{order.addressee.state}</div>
+      <div id="city">{order?.addressee?.city}</div>
+      <div id="state">{order?.addressee?.state}</div>
       <div id="status">
         <span>
           <MdFiberManualRecord />
@@ -88,9 +88,9 @@ export default function ListItem({ order }) {
             <Modal>
               <>
                 <strong>Informações sobre a encomenda</strong>
-                <small>{`${order.addressee.street}, ${order.addressee.number}`}</small>
-                <small>{`${order.addressee.city},${order.addressee.state} `}</small>
-                <small className="border">{order.addressee.zip_code}</small>
+                <small>{`${order?.addressee?.street}, ${order?.addressee?.number}`}</small>
+                <small>{`${order?.addressee?.city},${order?.addressee?.state} `}</small>
+                <small className="border">{order?.addressee?.zip_code}</small>
 
                 <strong id="dates">Datas</strong>
                 <small>

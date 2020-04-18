@@ -50,9 +50,20 @@ export const Container = styled.div`
       display: flex;
       flex-direction: column;
       background: #fff;
-      padding: 20px;
+      padding: 0 40px;
       margin-top: 15px;
       border-radius: 4px;
+      padding-bottom: 20px;
+
+      label {
+        color: #444444;
+        font-size: 14px;
+        font-weight: 700;
+        line-height: 17px;
+        margin-left: 4px;
+        margin-bottom: 15px;
+        margin-top: 15px;
+      }
 
       input {
         width: 100%;
@@ -65,18 +76,36 @@ export const Container = styled.div`
         margin-bottom: 15px;
       }
 
-      label {
-        color: #444444;
-        font-size: 14px;
-        font-weight: 700;
-        line-height: 17px;
-        margin-left: 4px;
-        margin-bottom: 15px;
-        margin-top: 15px;
+      .three-inputs {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .group {
+          display: flex;
+          flex-direction: column;
+        }
+
+        #street-input {
+          width: 100%;
+          max-width: 400px;
+        }
       }
 
-      .bottomInput {
-        margin-bottom: 15px;
+      .three-inputs-bottom {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        #city-input {
+          width: 100%;
+          max-width: 400px;
+        }
+
+        .group {
+          display: flex;
+          flex-direction: column;
+        }
       }
     }
   }
