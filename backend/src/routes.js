@@ -61,7 +61,9 @@ routes.put('/orders/:order_id/update', OrderController.update);
 routes.delete('/orders/:order_id/delete', OrderController.delete);
 
 routes.get('/addressees', AddresseeController.index);
+routes.get('/addressees/:addressee_id', AddresseeController.show);
 routes.post('/addressees', AddresseeController.store);
+routes.delete('/addressees/:addressee_id/delete', AddresseeController.delete);
 
 routes.get('/orders/delivery_issues', DeliveryIssueController.index);
 routes.get('/orders/:order_id/delivery_issues', DeliveryIssueController.show);
