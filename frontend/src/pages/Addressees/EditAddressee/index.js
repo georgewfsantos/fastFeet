@@ -50,39 +50,9 @@ export default function EditAddressee() {
     }
   }
 
-  /* async function loadDelivererName(inputValue, callback) {
-    const response = await api.get('/addressees', {
-      params: {
-        delivererName: inputValue,
-      },
-    });
-
-    const data = response.data.map(addressee => ({
-      value: addressee.name,
-      label: addressee.name,
-    }));
-
-    callback(data);
-  }
-
-  async function loadDelivererEmail(inputValue, callback) {
-    const response = await api.get('/addressees', {
-      params: {
-        addresseeName: inputValue,
-      },
-    });
-
-    const data = response.data.map(addressee => ({
-      value: addressee.email,
-      label: addressee.email,
-    }));
-
-    callback(data);
-  } */
-
   return (
     <Container>
-      <Title>Edição de entregadores</Title>
+      <Title>Edição de destinatários</Title>
       <Form ref={formRef} onSubmit={handleSubmit}>
         <div className="underTitle">
           <button

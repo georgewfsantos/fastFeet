@@ -1,13 +1,11 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { MdCheck, MdChevronLeft } from 'react-icons/md';
 import { Form } from '@unform/web';
 import { toast } from 'react-toastify';
 import { useParams } from 'react-router-dom';
 
-import AsyncInput from '~/components/AsyncInput';
+import Input from '~/components/Input';
 import AvatarInput from '~/pages/Deliverers/AvatarInput';
-
-import customStyles from '~/components/AsyncInput/customStyles';
 
 import api from '~/services/api';
 import history from '~/services/history';
@@ -16,22 +14,18 @@ import { Container, Title } from './styles';
 
 export default function EditDeliverer() {
   const { delivererId } = useParams();
-
+  const [file, setFile] = useState();
   const formRef = useRef(null);
 
   useEffect(() => {
     async function loadDelivererInfo() {
       const response = await api.get(`/deliverers/${delivererId}`);
 
-      formRef.current.setFieldValue('name', {
-        value: response.data.name,
-        label: response.data.name,
-      });
+      setFile(response.data.avatar);
 
-      formRef.current.setFieldValue('email', {
-        value: response.data.email,
-        label: response.data.email,
-      });
+      formRef.current.setFieldValue('name', response.data.name);
+
+      formRef.current.setFieldValue('email', response.data.email);
     }
     loadDelivererInfo();
   }, [delivererId]);
@@ -47,36 +41,6 @@ export default function EditDeliverer() {
         'Não foi possível atualizar os dados. Verifique-os e tente novamente'
       );
     }
-  }
-
-  async function loadDelivererName(inputValue, callback) {
-    const response = await api.get('/deliverers', {
-      params: {
-        delivererName: inputValue,
-      },
-    });
-
-    const data = response.data.map(deliverer => ({
-      value: deliverer.name,
-      label: deliverer.name,
-    }));
-
-    callback(data);
-  }
-
-  async function loadDelivererEmail(inputValue, callback) {
-    const response = await api.get('/deliverers', {
-      params: {
-        delivererName: inputValue,
-      },
-    });
-
-    const data = response.data.map(deliverer => ({
-      value: deliverer.email,
-      label: deliverer.email,
-    }));
-
-    callback(data);
   }
 
   return (
@@ -99,45 +63,14 @@ export default function EditDeliverer() {
         </div>
 
         <div className="white-wrapper">
-          <AvatarInput name="avatar_id" delivererID={delivererId} />
+          <AvatarInput name="avatar_id" fileObj={file} />
           <label htmlFor="name">Nome</label>
-          <AsyncInput
-            type="text"
-            name="name"
-            loadOptions={loadDelivererName}
-            placeholder="Digite o nome do entregador"
-            styles={[customStyles, { width: '100%' }]}
-            theme={theme => ({
-              ...theme,
-              borderRadius: 4,
-              colors: {
-                ...theme.colors,
-                primary25: '#ceb3ff',
-                primary: '#7d40e7',
-              },
-            })}
-          />
+          <Input type="text" name="name" />
 
           <label htmlFor="email" id="email" name="email">
             Email
           </label>
-          <AsyncInput
-            className="bottomInput"
-            type="text"
-            name="email"
-            loadOptions={loadDelivererEmail}
-            placeholder="Digite o nome do entregador"
-            styles={[customStyles, { width: '100%' }]}
-            theme={theme => ({
-              ...theme,
-              borderRadius: 4,
-              colors: {
-                ...theme.colors,
-                primary25: '#ceb3ff',
-                primary: '#7d40e7',
-              },
-            })}
-          />
+          <Input className="bottomInput" type="text" name="email" />
         </div>
       </Form>
     </Container>

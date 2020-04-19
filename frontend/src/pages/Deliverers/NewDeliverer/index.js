@@ -16,6 +16,7 @@ export default function NewDeliverer() {
     try {
       await api.post('/deliverers', data);
       toast.success('Dados cadastrados com sucesso');
+      history.push('/deliverers');
     } catch (err) {
       toast.error(
         'Não foi possível cadastrar o entregador. Por favor verifique os dados e tente novamente'
