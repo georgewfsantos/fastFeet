@@ -49,7 +49,7 @@ class AddresseeController {
       name: Yup.string().required(),
       street: Yup.string().required(),
       number: Yup.number().required(),
-      complement: Yup.string().required(),
+      complement: Yup.string(),
       state: Yup.string()
         .max(2)
         .required(),
@@ -71,6 +71,16 @@ class AddresseeController {
     const { addressee_id } = req.params;
 
     const addressee = await Addressee.findByPk(addressee_id);
+
+    return res.json(addressee);
+  }
+
+  async update(req, res) {
+    const { addressee_id } = req.params;
+
+    const addressee = await Addressee.findByPk(addressee_id);
+
+    addressee.update(req.body);
 
     return res.json(addressee);
   }

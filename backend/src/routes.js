@@ -63,6 +63,7 @@ routes.delete('/orders/:order_id/delete', OrderController.delete);
 routes.get('/addressees', AddresseeController.index);
 routes.get('/addressees/:addressee_id', AddresseeController.show);
 routes.post('/addressees', AddresseeController.store);
+routes.put('/addressees/:addressee_id/update', AddresseeController.update);
 routes.delete('/addressees/:addressee_id/delete', AddresseeController.delete);
 
 routes.get('/orders/delivery_issues', DeliveryIssueController.index);
