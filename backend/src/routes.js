@@ -38,6 +38,8 @@ routes.put(
 
 routes.post('/orders/:order_id/delivery_issues', DeliveryIssueController.store);
 
+routes.post('/deliverer_sessions', DelivererActionsController.store);
+
 routes.post('/sessions', SessionController.store);
 
 routes.use(authMiddleware);

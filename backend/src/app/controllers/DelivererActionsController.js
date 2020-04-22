@@ -1,4 +1,7 @@
 import * as Yup from 'yup';
+import jwt from 'jsonwebtoken';
+
+import authConfig from '../../config/auth';
 
 import Order from '../models/Order';
 import Deliverer from '../models/Deliverer';
@@ -29,6 +32,36 @@ class DelivererActionsController {
     });
 
     return res.json(pendingOrders);
+  }
+
+  async store(req, res) {
+    const schema = Yup.object().shape({
+      id: Yup.number().required(),
+    });
+
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Validation failed' });
+    }
+
+    const deliverer = await Deliverer.findByPk(req.body.id);
+
+    if (!deliverer) {
+      return res.status(401).json({ error: 'Student  not found' });
+    }
+
+    const { id, name, email, avatar_id } = deliverer;
+
+    return res.json({
+      deliverer: {
+        id,
+        name,
+        email,
+        avatar_id,
+      },
+      token: jwt.sign({ id }, authConfig.secret, {
+        expiresIn: authConfig.expiresIn,
+      }),
+    });
   }
 
   async update(req, res) {
