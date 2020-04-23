@@ -30,6 +30,7 @@ module.exports = {
     'react/static-property-placement': 'off',
     'react/jsx-props-no-spreading': 'off',
     'no-param-reassign': 'off',
+    'react/no-unused-prop-types': 'off',
   },
   settings: {
     'import/resolver': {
