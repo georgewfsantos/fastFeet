@@ -21,7 +21,7 @@ export default function DashboardRoutes() {
         component={DeliveryRoutes}
         options={{
           tabBarIcon: ({color, size}) => (
-            <Icon name="stop" size={size} color={color} />
+            <Icon name="reorder" size={size} color={color} />
           ),
         }}
       />
