@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import {StatusBar} from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import UserAvatar from 'react-native-user-avatar';
-import DeliveryItem from '~/pages/Deliveries/DeliveryItem';
+import DeliveryItem from '~/pages/Deliveries/Components/DeliveryItem';
 
 import api from '~/services/api';
 
@@ -25,13 +26,32 @@ import {
 } from './styles';
 
 export default function Deliveries() {
+  const deliverer_id = useSelector((state) => state.user.profile.id);
   const [deliveries, setDeliveries] = useState([]);
 
   useEffect(() => {
-    const response = api.get('/orders');
+    async function loadDeliveries() {
+      const response = await api.get(`/orders`);
+
+      setDeliveries(response.data);
+    }
+    loadDeliveries();
+  }, []);
+
+  async function handleShowPending() {
+    const response = await api.get(`/deliverer/${deliverer_id}/orders`);
 
     setDeliveries(response.data);
-  }, []);
+  }
+
+  async function handleShowDelivered() {
+    const response = await api.get(
+      `/deliverer/${deliverer_id}/delivered_orders`
+    );
+
+    setDeliveries(response.data);
+  }
+
   return (
     <>
       <StatusBar barStyle="dark-content" backgroundColor="#fff" />
@@ -51,10 +71,10 @@ export default function Deliveries() {
         <ListHeader>
           <Title>Entregas</Title>
           <Options>
-            <PendingButton>
+            <PendingButton onPress={handleShowPending}>
               <PendingButtonText>Pendentes</PendingButtonText>
             </PendingButton>
-            <DeliveredButton>
+            <DeliveredButton onPress={handleShowDelivered}>
               <DeliveredButtonText>Entregues</DeliveredButtonText>
             </DeliveredButton>
           </Options>
@@ -62,8 +82,10 @@ export default function Deliveries() {
 
         <DeliveryList
           data={deliveries}
-          keyExtractor={(item) => String(item.id)}
-          renderItem={({item: delivery}) => <DeliveryItem data={delivery} />}
+          keyExtractor={(delivery) => String(delivery.id)}
+          renderItem={({item: delivery}) => (
+            <DeliveryItem delivery={delivery} />
+          )}
         />
       </Container>
     </>

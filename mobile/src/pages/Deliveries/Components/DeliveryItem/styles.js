@@ -8,6 +8,7 @@ export const Container = styled.View`
   align-items: center;
   padding: 2px;
   background: #fff;
+  margin-bottom: 10px;
 `;
 
 export const Title = styled.View`
@@ -33,11 +34,12 @@ export const FlowBar = styled.View`
   padding: 10px;
 `;
 
-export const Circle = styled.View`
+export const FirstCircle = styled.View`
   height: 16px;
   width: 16px;
   border: 1px solid #7d40e7;
   border-radius: 9px;
+  background: #7d40e7;
 `;
 
 export const Line = styled.View`
@@ -77,7 +79,7 @@ export const DateView = styled.View`
 export const DateText = styled.Text`
   color: #999999;
 `;
-export const Date = styled.Text`
+export const CreatedDate = styled.Text`
   color: #444444;
   font-weight: bold;
   font-size: 16px;

@@ -48,7 +48,7 @@ export const ListHeader = styled.View`
 export const DeliveryList = styled.FlatList.attrs({
   showsVerticalScrollIndicator: false,
   contentContainerStyle: {
-    padding: 30,
+    marginTop: 15,
   },
 })``;
 
