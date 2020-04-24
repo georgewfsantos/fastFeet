@@ -16,28 +16,6 @@ import DeliveryIssueController from './app/controllers/DeliveryIssueController';
 const routes = new Router();
 const upload = multer(multerConfig);
 
-routes.get('/', (req, res) => {
-  return res.json({ ok: true });
-});
-
-routes.get('/deliverer/:deliverer_id/orders', DelivererActionsController.index);
-routes.get(
-  '/deliverer/:deliverer_id/delivered_orders',
-  OnlyDeliveredController.index
-);
-
-routes.put(
-  '/deliverer/:deliverer_id/orders/:order_id/end_date/update',
-  DelivererActionsController.update
-);
-
-routes.put(
-  '/deliverer/:deliverer_id/orders/:order_id/start_date/update',
-  SetForDeliveryController.update
-);
-
-routes.post('/orders/:order_id/delivery_issues', DeliveryIssueController.store);
-
 routes.post('/deliverer_sessions', DelivererActionsController.store);
 
 routes.post('/sessions', SessionController.store);
@@ -70,5 +48,24 @@ routes.delete('/addressees/:addressee_id/delete', AddresseeController.delete);
 
 routes.get('/orders/delivery_issues', DeliveryIssueController.index);
 routes.get('/orders/:order_id/delivery_issues', DeliveryIssueController.show);
+
+// Deliverer routes
+routes.get('/deliverer/:deliverer_id/orders', DelivererActionsController.index);
+routes.get(
+  '/deliverer/:deliverer_id/delivered_orders',
+  OnlyDeliveredController.index
+);
+
+routes.put(
+  '/deliverer/:deliverer_id/orders/:order_id/end_date/update',
+  DelivererActionsController.update
+);
+
+routes.put(
+  '/deliverer/:deliverer_id/orders/:order_id/start_date/update',
+  SetForDeliveryController.update
+);
+
+routes.post('/orders/:order_id/delivery_issues', DeliveryIssueController.store);
 
 export default routes;

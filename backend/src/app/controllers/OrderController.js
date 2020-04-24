@@ -24,13 +24,7 @@ class OrderController {
               },
             },
           },
-          attributes: [
-            'id',
-            'product',
-            'start_date',
-            'end_date',
-            'canceled_at',
-          ],
+
           include: [
             {
               model: Deliverer,
@@ -58,13 +52,6 @@ class OrderController {
           ],
         })
       : await Order.findAll({
-          attributes: [
-            'id',
-            'product',
-            'start_date',
-            'end_date',
-            'canceled_at',
-          ],
           include: [
             {
               model: Deliverer,

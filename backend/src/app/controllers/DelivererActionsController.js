@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import authConfig from '../../config/auth';
 
 import Order from '../models/Order';
+import Addressee from '../models/Addressee';
 import Deliverer from '../models/Deliverer';
 
 class DelivererActionsController {
@@ -25,6 +26,7 @@ class DelivererActionsController {
       where: {
         deliverer_id,
       },
+      include: [{ model: Addressee, as: 'addressee' }],
     });
 
     const pendingOrders = orders.filter(order => {

@@ -1,4 +1,5 @@
 import Order from '../models/Order';
+import Addressee from '../models/Addressee';
 import Deliverer from '../models/Deliverer';
 
 class OnlyDeliveredController {
@@ -20,6 +21,7 @@ class OnlyDeliveredController {
       where: {
         id: deliverer_id,
       },
+      include: [{ model: Addressee, as: 'addressee' }],
     });
 
     const deliveredOrders = orders.filter(order => {
