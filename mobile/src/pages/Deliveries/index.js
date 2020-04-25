@@ -44,7 +44,7 @@ export default function Deliveries({navigation}) {
   async function handleShowPending() {
     const response = await api.get(`/deliverer/${delivererInfo.id}/orders`);
 
-    setActivePending(!activePending);
+    setActivePending(true);
     setActiveDelivered(false);
     setDeliveries(response.data);
   }

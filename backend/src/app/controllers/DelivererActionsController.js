@@ -4,6 +4,7 @@ import jwt from 'jsonwebtoken';
 import authConfig from '../../config/auth';
 
 import Order from '../models/Order';
+import File from '../models/File';
 import Addressee from '../models/Addressee';
 import Deliverer from '../models/Deliverer';
 
@@ -45,21 +46,25 @@ class DelivererActionsController {
       return res.status(400).json({ error: 'Validation failed' });
     }
 
-    const deliverer = await Deliverer.findByPk(req.body.id);
+    const { id } = req.body;
+
+    const deliverer = await Deliverer.findByPk(id, {
+      attributes: ['id', 'name', 'email', 'createdAt'],
+      include: [
+        {
+          model: File,
+          as: 'avatar',
+          attributes: ['id', 'path', 'url'],
+        },
+      ],
+    });
 
     if (!deliverer) {
       return res.status(401).json({ error: 'Student  not found' });
     }
 
-    const { id, name, email, avatar_id } = deliverer;
-
     return res.json({
-      deliverer: {
-        id,
-        name,
-        email,
-        avatar_id,
-      },
+      deliverer,
       token: jwt.sign({ id }, authConfig.secret, {
         expiresIn: authConfig.expiresIn,
       }),
