@@ -19,6 +19,13 @@ export const UserInfo = styled.View`
   flex-direction: row;
   justify-content: space-between;
 `;
+
+export const AvatarImage = styled.Image`
+  width: 70px;
+  height: 70px;
+  border-radius: 35px;
+`;
+
 export const WelcomeView = styled.View`
   margin-left: 10px;
   justify-content: center;
@@ -59,22 +66,6 @@ export const Title = styled.Text`
 `;
 export const Options = styled.View`
   flex-direction: row;
-`;
-export const PendingButton = styled.TouchableOpacity`
-  border: none;
-  margin-right: 8px;
-`;
-export const PendingButtonText = styled.Text`
-  color: #7d40e7;
-  font-size: 16px;
-  font-weight: 500;
-`;
-export const DeliveredButton = styled.TouchableOpacity`
-  color: #7d40e7;
-  border: none;
-`;
-export const DeliveredButtonText = styled.Text`
-  color: #7d40e7;
-  font-size: 16px;
-  font-weight: 500;
+  justify-content: space-between;
+  width: 50%;
 `;

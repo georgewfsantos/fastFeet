@@ -33,7 +33,7 @@ export default function SignIn() {
           />
           <SubmitButton onPress={handleSubmit}>
             {loading ? (
-              <ActivityIndicator size="smal" color="#fff" />
+              <ActivityIndicator size="small" color="#fff" />
             ) : (
               <ButtonText>Entrar no sistema</ButtonText>
             )}
