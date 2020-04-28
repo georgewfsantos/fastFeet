@@ -13,8 +13,25 @@ export default function DeliveryRoutes() {
   return (
     <Stack.Navigator
       screenOptions={{
-        headerStyle: {backgroundColor: '#7159c1'},
+        headerStyle: {
+          height: 200,
+          backgroundColor: '#7D40E7',
+        },
+        headerTitleAlign: 'center',
         headerTintColor: '#fff',
+        headerTitleStyle: {
+          fontSize: 20,
+          fontWeight: 'bold',
+          height: 125,
+          zIndex: -3,
+          position: 'relative',
+        },
+        headerBackTitleVisible: false,
+        headerTransparent: true,
+        headerLeftContainerStyle: {
+          marginLeft: 20,
+          height: 55,
+        },
       }}>
       <Stack.Screen
         name="Entregas"

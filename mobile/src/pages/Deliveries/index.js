@@ -105,7 +105,7 @@ export default function Deliveries({navigation}) {
           data={deliveries}
           keyExtractor={(delivery) => String(delivery.id)}
           renderItem={({item: delivery}) => (
-            <DeliveryItem delivery={delivery} />
+            <DeliveryItem delivery={delivery} navigation={navigation} />
           )}
         />
       </Container>

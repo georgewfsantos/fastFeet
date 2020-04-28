@@ -27,7 +27,7 @@ import {
   DetailButtonText,
 } from './styles';
 
-export default function DeliveryItem({delivery}) {
+export default function DeliveryItem({delivery, navigation}) {
   return (
     <Container>
       <Title>
@@ -57,7 +57,10 @@ export default function DeliveryItem({delivery}) {
           <CityText>Cidade</CityText>
           <City>{delivery.addressee.city}</City>
         </CityView>
-        <DetailButton>
+        <DetailButton
+          onPress={() =>
+            navigation.navigate('Detalhes da encomenda', {id: delivery.id})
+          }>
           <DetailButtonText>Ver detalhes</DetailButtonText>
         </DetailButton>
       </Footer>
@@ -67,6 +70,7 @@ export default function DeliveryItem({delivery}) {
 
 DeliveryItem.propTypes = {
   delivery: PropTypes.shape({
+    id: PropTypes.number,
     product: PropTypes.string,
     start_date: PropTypes.instanceOf(Date),
     end_date: PropTypes.instanceOf(Date),
@@ -74,5 +78,8 @@ DeliveryItem.propTypes = {
     addressee: PropTypes.shape({
       city: PropTypes.string,
     }),
+  }).isRequired,
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
   }).isRequired,
 };
