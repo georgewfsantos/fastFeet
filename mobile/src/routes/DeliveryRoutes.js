@@ -23,8 +23,6 @@ export default function DeliveryRoutes() {
           fontSize: 20,
           fontWeight: 'bold',
           height: 125,
-          zIndex: -3,
-          position: 'relative',
         },
         headerBackTitleVisible: false,
         headerTransparent: true,
