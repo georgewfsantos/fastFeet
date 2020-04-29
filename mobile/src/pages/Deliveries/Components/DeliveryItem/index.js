@@ -50,7 +50,7 @@ export default function DeliveryItem({delivery, navigation}) {
         <DateView>
           <DateText>Data</DateText>
           <CreatedDate>
-            {format(new Date(delivery.createdAt), 'dd/MM/yyy', {locale: pt})}
+            {format(new Date(delivery.createdAt), 'dd/MM/yyyy', {locale: pt})}
           </CreatedDate>
         </DateView>
         <CityView>
@@ -59,7 +59,7 @@ export default function DeliveryItem({delivery, navigation}) {
         </CityView>
         <DetailButton
           onPress={() =>
-            navigation.navigate('Detalhes da encomenda', {id: delivery.id})
+            navigation.navigate('Detalhes da encomenda', {delivery})
           }>
           <DetailButtonText>Ver detalhes</DetailButtonText>
         </DetailButton>

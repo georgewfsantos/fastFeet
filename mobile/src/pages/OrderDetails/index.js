@@ -1,5 +1,8 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {StatusBar} from 'react-native';
+import PropTypes from 'prop-types';
+import format from 'date-fns/format';
+import pt from 'date-fns/locale/pt-BR';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 
 import HeaderBackground from '~pages/Deliveries/Components/HeaderBackground';
@@ -35,7 +38,24 @@ import {
   ConfirmView,
 } from './styles';
 
-export default function OrderDetails() {
+export default function OrderDetails({route, navigation}) {
+  const {delivery} = route.params;
+  const [status, setStatus] = useState('');
+
+  console.tron.log(delivery);
+
+  const completeAddress = `${delivery.addressee.street}, ${delivery.addressee.number}, ${delivery.addressee.city}-${delivery.addressee.state}, ${delivery.addressee.zip_code}`;
+
+  useEffect(() => {
+    if (delivery.start_date === null) {
+      setStatus('Pendente');
+    } else if (delivery.start_date && delivery.end_date !== null) {
+      setStatus('Entregue');
+    } else {
+      setStatus('Retirada');
+    }
+  }, []);
+
   return (
     <>
       <StatusBar backgroundColor="#7D40E7" barStyle="light-content" />
@@ -49,17 +69,17 @@ export default function OrderDetails() {
 
           <AddresseView>
             <AddreseeTitle>DESTINATÁRIO</AddreseeTitle>
-            <AddresseeName>Ludwig van Beethoven</AddresseeName>
+            <AddresseeName>{delivery.addressee.name}</AddresseeName>
           </AddresseView>
 
           <AddressView>
             <AddressTitle>ENDEREÇO DE ENTREGA</AddressTitle>
-            <Address>Rua Beethoven, 1729, Diadema-SP, 09960-580</Address>
+            <Address>{completeAddress}</Address>
           </AddressView>
 
           <ProductView>
             <ProductTitleText>PRODUCT</ProductTitleText>
-            <Product>Yamaha SX7</Product>
+            <Product>{delivery.product}</Product>
           </ProductView>
         </DeliveryInfo>
 
@@ -69,33 +89,52 @@ export default function OrderDetails() {
             <TitleText>Situação da entrega</TitleText>
           </TitleView>
           <StatusTitle>STATUS</StatusTitle>
-          <Status>Pendente</Status>
+          <Status>{status}</Status>
 
           <DatesView>
             <StartDateView>
               <StartDateTitle>DATA DE RETIRADA</StartDateTitle>
-              <StartDate>14/01/2020</StartDate>
+              <StartDate>
+                {format(new Date(delivery.start_date), 'dd/MM/yyyy', {
+                  locale: pt,
+                })}
+              </StartDate>
             </StartDateView>
 
             <DeliveredDateView>
               <DeliveredDateTitle>DATA DE ENTREGA</DeliveredDateTitle>
-              <DeliveredDate>--/--/--</DeliveredDate>
+              <DeliveredDate>
+                {delivery.end_date
+                  ? format(new Date(delivery.end_date), 'dd/MM/yyyy', {
+                      locale: pt,
+                    })
+                  : '--/--/--'}
+              </DeliveredDate>
             </DeliveredDateView>
           </DatesView>
         </DeliveryStatusView>
 
         <OptionView>
-          <ProblemView>
+          <ProblemView
+            onPress={() =>
+              navigation.navigate('Informar problema', {id: delivery.id})
+            }>
             <Icon name="highlight-off" size={30} color="#E74040" />
             <Option>Informar Problema</Option>
           </ProblemView>
 
-          <ProblemDetailView>
+          <ProblemDetailView
+            onPress={() =>
+              navigation.navigate('Visualizar problemas', {id: delivery.id})
+            }>
             <Icon name="error-outline" size={30} color="#E7BA40" />
-            <Option>Visualizar Problema</Option>
+            <Option>Visualizar Problemas</Option>
           </ProblemDetailView>
 
-          <ConfirmView>
+          <ConfirmView
+            onPress={() =>
+              navigation.navigate('Confirmar entrega', {id: delivery.id})
+            }>
             <Icon name="check-circle" size={30} color="#7D40E7" />
             <Option>Confirmar Entrega</Option>
           </ConfirmView>
@@ -104,3 +143,27 @@ export default function OrderDetails() {
     </>
   );
 }
+
+OrderDetails.propTypes = {
+  navigation: PropTypes.shape({
+    navigate: PropTypes.func.isRequired,
+  }).isRequired,
+  route: PropTypes.shape({
+    params: PropTypes.shape({
+      delivery: PropTypes.shape({
+        id: PropTypes.number,
+        product: PropTypes.string,
+        addresse: PropTypes.shape({
+          name: PropTypes.string,
+          street: PropTypes.string,
+          number: PropTypes.number,
+          city: PropTypes.string,
+          state: PropTypes.string,
+          zip_code: PropTypes.string,
+        }),
+        start_date: PropTypes.instanceOf(Date),
+        end_date: PropTypes.instanceOf(Date),
+      }).isRequired,
+    }).isRequired,
+  }).isRequired,
+};
