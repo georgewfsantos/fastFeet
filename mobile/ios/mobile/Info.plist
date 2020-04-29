@@ -58,5 +58,17 @@
   <array>
     <string>MaterialIcons.ttf</string>
   </array>
+
+  <key>NSCameraUsageDescription</key>
+<string>Your accessing the device camera</string>
+
+<!-- Required with iOS 11 and higher: include this only if you are planning to use the camera roll -->
+<key>NSPhotoLibraryAddUsageDescription</key>
+<string>Image Library</string>
+
+<!-- Include this only if you are planning to use the camera roll -->
+<key>NSPhotoLibraryUsageDescription</key>
+<string>You are entering the image library</string>
+
 </dict>
 </plist>
