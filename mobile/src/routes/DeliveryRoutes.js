@@ -14,7 +14,6 @@ export default function DeliveryRoutes() {
     <Stack.Navigator
       screenOptions={{
         headerStyle: {
-          height: 200,
           backgroundColor: '#7D40E7',
         },
         headerTitleAlign: 'center',
@@ -22,13 +21,11 @@ export default function DeliveryRoutes() {
         headerTitleStyle: {
           fontSize: 20,
           fontWeight: 'bold',
-          height: 125,
         },
         headerBackTitleVisible: false,
         headerTransparent: true,
         headerLeftContainerStyle: {
           marginLeft: 20,
-          height: 55,
         },
       }}>
       <Stack.Screen

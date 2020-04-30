@@ -27,7 +27,7 @@ export const NameLabel = styled.Text`
 `;
 export const Name = styled.Text`
   color: #444444;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: bold;
 `;
 export const EmailView = styled.View`
@@ -39,7 +39,7 @@ export const EmailLabel = styled.Text`
 `;
 export const Email = styled.Text`
   color: #444444;
-  font-size: 24px;
+  font-size: 21px;
   font-weight: bold;
 `;
 export const DateView = styled.View`
@@ -51,7 +51,7 @@ export const DateLabel = styled.Text`
 `;
 export const CreatedDate = styled.Text`
   color: #444444;
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
 `;
 export const LogoutButton = styled.TouchableOpacity`
@@ -64,6 +64,6 @@ export const LogoutButton = styled.TouchableOpacity`
 `;
 export const LogoutButtonText = styled.Text`
   color: #fff;
-  font-size: 21px;
+  font-size: 19px;
   font-weight: bold;
 `;

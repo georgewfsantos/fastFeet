@@ -63,7 +63,7 @@ export default function OrderDetails({route, navigation}) {
       <Container>
         <DeliveryInfo>
           <TitleView>
-            <Icon name="local-shipping" size={30} color="#7D40E7" />
+            <Icon name="local-shipping" size={25} color="#7D40E7" />
             <TitleText>Informações da entrega</TitleText>
           </TitleView>
 
@@ -85,7 +85,7 @@ export default function OrderDetails({route, navigation}) {
 
         <DeliveryStatusView>
           <TitleView>
-            <Icon name="event" size={30} color="#7D40E7" />
+            <Icon name="event" size={25} color="#7D40E7" />
             <TitleText>Situação da entrega</TitleText>
           </TitleView>
           <StatusTitle>STATUS</StatusTitle>

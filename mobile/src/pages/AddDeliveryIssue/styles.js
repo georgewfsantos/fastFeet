@@ -12,7 +12,7 @@ export const IssueInput = styled.TextInput`
   padding: 13px;
   background: #fff;
   border-radius: 4px;
-  margin-top: -90px;
+  margin-top: -65px;
   height: 380px;
   font-size: 16px;
 `;

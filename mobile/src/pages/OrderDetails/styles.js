@@ -12,7 +12,7 @@ export const DeliveryInfo = styled.View`
   padding: 13px;
   background: #fff;
   border-radius: 4px;
-  margin-top: -90px;
+  margin-top: -70px;
 `;
 
 export const TitleView = styled.View`
@@ -25,41 +25,41 @@ export const TitleView = styled.View`
 export const TitleText = styled.Text`
   color: #7d40e7;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 16px;
   margin-left: 5px;
 `;
 export const AddresseView = styled.View`
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 export const AddreseeTitle = styled.Text`
   color: #999999;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
-  margin-bottom: 8px;
+  margin-bottom: 5px;
 `;
 
 export const AddresseeName = styled.Text`
   color: #666666;
-  font-size: 16px;
+  font-size: 14px;
 `;
 export const AddressView = styled.View`
   width: 100%;
   justify-content: center;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 export const AddressTitle = styled.Text`
   color: #999999;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 8px;
 `;
 export const Address = styled.Text`
   color: #666666;
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 export const ProductView = styled.View`
@@ -69,15 +69,15 @@ export const ProductView = styled.View`
 
 export const ProductTitleText = styled.Text`
   color: #999999;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: bold;
   margin-top: 10px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
 `;
 
 export const Product = styled.Text`
   color: #666666;
-  font-size: 16px;
+  font-size: 14px;
 `;
 export const DeliveryStatusView = styled.View`
   width: 100%;
@@ -86,18 +86,17 @@ export const DeliveryStatusView = styled.View`
   padding: 13px;
   background: #fff;
   border-radius: 4px;
-  padding-bottom: 20px;
 `;
 
 export const StatusTitle = styled.Text`
   color: #999999;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 10px;
 `;
 export const Status = styled.Text`
   color: #666666;
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 10px;
   margin-bottom: 15px;
 `;
@@ -115,12 +114,12 @@ export const StartDateView = styled.View`
 export const StartDateTitle = styled.Text`
   color: #999999;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
 `;
 
 export const StartDate = styled.Text`
   color: #666666;
-  font-size: 16px;
+  font-size: 14px;
 
   margin-top: 10px;
 `;
@@ -130,11 +129,11 @@ export const DeliveredDateView = styled.View`
 export const DeliveredDateTitle = styled.Text`
   color: #999999;
   font-weight: bold;
-  font-size: 16px;
+  font-size: 14px;
 `;
 export const DeliveredDate = styled.Text`
   color: #666666;
-  font-size: 16px;
+  font-size: 14px;
   margin-top: 10px;
 `;
 export const OptionView = styled.View`

@@ -3,9 +3,9 @@ import styled from 'styled-components/native';
 export const Container = styled.View`
   flex: 1;
   width: 100%;
-  padding: 20px;
+  padding: 0 20px;
   background: #fff;
-  margin-top: 25px;
+  margin-top: 35px;
 `;
 
 export const InfoView = styled.View`

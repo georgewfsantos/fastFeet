@@ -13,7 +13,7 @@ export default function AddDeliveryIssue({route, navigation}) {
   const [description, setDescription] = useState('');
 
   async function handleSubmit() {
-    const response = await api.post(`/orders/${id}/delivery_issues`, {
+    await api.post(`/orders/${id}/delivery_issues`, {
       description,
     });
 
