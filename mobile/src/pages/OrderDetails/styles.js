@@ -12,7 +12,7 @@ export const DeliveryInfo = styled.View`
   padding: 13px;
   background: #fff;
   border-radius: 4px;
-  margin-top: -70px;
+  margin-top: -120px;
 `;
 
 export const TitleView = styled.View`

@@ -5,7 +5,6 @@ export const Container = styled.View`
   width: 100%;
   padding: 0 20px;
   background: #fff;
-  margin-top: 35px;
 `;
 
 export const InfoView = styled.View`
